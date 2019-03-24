@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<!DOCTYPE TinyExpedia [
+<!ELEMENT TinyExpedia (customer*, airline*, bookingSys*)>
+<!ELEMENT customer ( address+, phone+)>
+<!ATTLIST customer Order_Number IDREFS #REQUIRED
+                   Passport_Number ID #REQUIRED
+                   Legal_Name CDATA #REQUIRED
+                   DOB CDATA #REQUIRED>
+<!ELEMENT phone (#PCDATA)>
+<!ELEMENT address (street,city,state,zipcode)>
+<!ELEMENT street (#PCDATA)>
+<!ELEMENT city (#PCDATA)>
+<!ELEMENT state (#PCDATA)>
+<!ELEMENT zipcode (#PCDATA)>
+<!ELEMENT airline EMPTY>
+
+<!ATTLIST airline Airline_Code ID #REQUIRED
+                  Airline_Name CDATA #REQUIRED>
+<!ELEMENT bookingSys (flightNum+)>
+<!ATTLIST bookingSys Order_Number ID #REQUIRED
+                     Airline_Code IDREF #REQUIRED
+                     Payment_Method (creditCard|check|debitCard) #REQUIRED>
+<!ELEMENT flightNum (#PCDATA)>
+]>
+<TinyExpedia>
+    <customer  Order_Number = "4785993"  Passport_Number="P256443" Legal_Name="Eric Wang" DOB="09/01/1995">
+        <phone> 123-456-7890</phone>
+        <address>
+            <street> 1 Callodine Ave</street>
+            <city> Buffalo</city>
+            <state> New York </state>
+            <zipcode> 14226 </zipcode>
+        </address>
+    </customer>
+    <airline Airline_Code="A2562" Airline_Name="China Southern"></airline>
+    <bookingSys Order_Number ="4785993" Airline_Code="A2562" Payment_Method="debitCard">
+        <flightNum>CH01</flightNum>
+    </bookingSys>
+</TinyExpedia>
